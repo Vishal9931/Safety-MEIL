@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SAFENEST Login</title>
+	<link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+	<!-- Iconify Icons -->
+	<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>\
+    <link rel="stylesheet" href="First_Time_Saving.css">
+
+</head>
+
+<body>
+	<div class="container">
+
+		<div class="logoContainer">
+			<div class="iconImage">
+				<img src="iconImage.png" alt="iconImage">
+			</div>
+			<div class="logoImage">
+				<img src="logo.png" alt="Logo">
+			</div>
+		</div>
+
+		<div class="formContainer">
+			<div class="input-box">
+				<!-- <iconify-icon icon="mdi-light:email" width="22" height="22"></iconify-icon> -->
+                 <i class="bi bi-envelope"></i>
+				<input id="email" type="email" placeholder="Enter your Employee Id" />
+			</div>
+
+			<div class="input-box">
+				<!-- <iconify-icon icon="carbon:password" width="22" height="22"></iconify-icon> -->
+                 <i class="bi bi-file-earmark-lock-fill"></i>
+				<input id="password" type="password" placeholder="Enter your Password" />
+			</div>
+
+			<a id="forgetPassword">Forget Password?</a>
+
+			<button id="btn"><a href="Just_Save.html">Login</a></button>
+			
+		</div>
+	</div>
+
+	<script>
+		let email = document.getElementById("email");
+		let password = document.getElementById("password");
+		let btn = document.getElementById("btn");
+		let registerBtn = document.getElementById("register");
+		let forgetPassword = document.getElementById("forgetPassword");
+
+		// ===== Register Redirect =====
+		registerBtn.addEventListener("click", () => {
+			document.location.href = "publicRegister.html";
+		});
+
+		// ===== Login Button Logic =====
+		btn.addEventListener("click", () => {
+			let uname = email.value.trim();
+			let uPass = password.value.trim();
+
+			if (uname === "" || uPass === "") {
+				alert("Fill the form");
+				return;
+			}
+
+			let users = JSON.parse(localStorage.getItem("users")) || [];
+
+			const user = users.find(
+				(u) => (u.userName === uname || u.email === uname) && u.password === uPass
+			);
+
+			if (user) {
+				alert("Login Successful! Welcome, " + user.fullName);
+				email.value = "";
+				password.value = "";
+				window.location.href = "profile.html";
+			} else {
+				alert("Invalid email or password!");
+			}
+		});
+
+		// ===== Forget Password Logic =====
+		forgetPassword.addEventListener("click", () => {
+			let users = JSON.parse(localStorage.getItem("users")) || [];
+			let emailInput = prompt("Enter your registered email:");
+
+			if (!emailInput) return;
+
+			let userIndex = users.findIndex(u => u.email === emailInput.trim());
+			if (userIndex === -1) {
+				alert("No account found with this email!");
+				return;
+			}
+
+			let newPass = prompt("Enter your new password:");
+			if (!newPass || newPass.trim() === "") {
+				alert("Password cannot be empty!");
+				return;
+			}
+
+			users[userIndex].password = newPass.trim();
+			localStorage.setItem("users", JSON.stringify(users));
+
+			alert("Password successfully updated! You can now log in with your new password.");
+		});
+	</script>
+</body>
+
+</html>
