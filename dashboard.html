@@ -27,8 +27,8 @@
 
                     <!-- Navigation Links -->
                     <ul class="nav-links">
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Logout</a></li>
+                        <li><a href="userProfile.html">Profile</a></li>
+                        <li><a href="index.html">Logout</a></li>
                     </ul>
                 </div>
             </nav>
@@ -150,6 +150,7 @@
     let dangerousOccurenceBtn = document.querySelector(".Dangerous-Occurence");
     let stopWorkOrderBtn = document.querySelector(".Stop-Work-Order");
     let goodPracticeBtn = document.querySelector(".Good-Practice");
+    let checkReportsBtn = document.querySelector(".button-53");
 
     SafetyObservationBtn.addEventListener("click", () => {
         window.location.href = "Safety_Observation.html";
@@ -186,6 +187,9 @@
     });
     goodPracticeBtn.addEventListener("click", () => {
         window.location.href = "Good-Practice.html";
+    });
+    checkReportsBtn.addEventListener("click", () => {
+        window.location.href = "Reports_Dashboard.html";
     });
 </script>
 </body>

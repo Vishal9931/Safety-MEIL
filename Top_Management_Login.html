@@ -29,15 +29,13 @@
 		<div class="formContainer">
 			<div class="input-box">
 				<i class="bi bi-envelope"></i>
-				<input id="email" type="text" placeholder="Enter your Employee Id" required spellcheck="true"/>
+				<input id="email" type="text" placeholder="Enter admin Id" required spellcheck="true"/>
 			</div>
 
 			<div class="input-box">
 				<i class="bi bi-file-earmark-lock-fill"></i>
 				<input id="password" type="password" placeholder="Enter your Password" required spellcheck="true"/>
 			</div>
-
-			<a href="#" id="forgetPassword">Forget Password?</a>
 
 			<button id="btn">Login</button>
 			
@@ -57,7 +55,7 @@
 
 			// Check if both fields are filled
 			if (uname === "" || uPass === "") {
-				alert("Please enter both Employee ID and Password");
+				alert("Please enter both Admin Id and Password");
 				return;
 			}
 
@@ -65,7 +63,7 @@
 			alert("Login Successful!");
 			email.value = "";
 			password.value = "";
-			window.location.href = "Just_Save.html";
+			window.location.href = "/extra/BPUT2025/superadmin.html";
 		});
 
 		// ===== Enter Key Login =====
